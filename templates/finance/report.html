@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th>Дата</th>
+        <th>Текущая прибыль</th>
+        <th>Ожидаемая прибыль</th>
+    </tr>
+  </thead>
+  <tbody>
+{% if reports %}
+    {% for report in reports %}
+      <tr>
+        <td>{{ report.month|date:"m.Y" }}</td>
+          <td>{{ report.current_profit }}</td>
+          <td>{{ report.excpected_profit }}</td>
+      </tr>
+    {% endfor %}
+{% endif %}
+      </tbody>
+</table>
+{% endblock %}

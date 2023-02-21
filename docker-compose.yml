@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    command: poetry run gunicorn seller_project.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - 8000:8000
+
+  worker:
+    build: .
+    hostname: worker
+    entrypoint: poetry run python -m celery
+    command: -A seller_project worker -l info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - web
+
+  redis:
+    image: redis
+    hostname: redis
+

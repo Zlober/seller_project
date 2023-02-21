@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="card">
+<div class="card-header bg-secondary text-white">
+    <h2>{{ order.product_name }}</h2>
+</div>
+<div class="card-body bg-light">
+    <p>{{ order.market }}</p>
+    <hr />
+    <div class="container">
+        <div class="row p-1">
+            <div class="col">Номер заказа</div>
+            <div class="col">{{ order.order_number }}</div>
+        </div>
+                <div class="row p-1">
+            <div class="col">Отправлен</div>
+            <div class="col">{{ order.is_finished }}</div>
+        </div>
+                <div class="row p-1">
+            <div class="col">Планируемая дата отправки</div>
+            <div class="col">{{ order.delivery_time|date:"d.m.Y" }}</div>
+        </div>
+                <div class="row p-1">
+            <div class="col">Фактическая дата отправки</div>
+            <div class="col">{{ order.actually_finished|date:"d.m.Y" }}</div>
+        </div>
+
+        <div class="row p-1">
+            <div class="col">Отменен</div>
+            <div class="col">{{ order.canceled }}</div>
+        </div>
+                <div class="row p-1">
+            <div class="col">
+                <a href="{% url 'complete_order' order.id %}">Отправлено</a>
+                <br>
+                <a href="{% url 'cancel_order' order.id %}">Отменен</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}

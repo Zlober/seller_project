@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "seller-project"
+version = "0.1.0"
+description = ""
+authors = ["Sachkov Ilya <sos31337@gmail.com>"]
+packages = [{include = "seller_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.6"
+django-bootstrap4 = "^22.3"
+python-dotenv = "^0.21.1"
+django-extensions = "^3.2.1"
+ozon = {path = "ozon-0.1.0-py3-none-any.whl"}
+gunicorn = "^20.1.0"
+celery = {extras = ["redis"], version = "^5.2.7"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

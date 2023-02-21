@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th>ID</th>
+        <th>Продукт</th>
+        <th>Номер заказа</th>
+        <th>Площадка</th>
+        <th>Дата отгрузки</th>
+        <th>Цена</th>
+        <th>Коммисия площадки</th>
+        <th>Обработка и доставка</th>
+    </tr>
+  </thead>
+  <tbody>
+{% if orders %}
+    {% for order in orders %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+          <td><a href="{% url 'detail_order' order.id %}">{{order.product_name}}</a></td>
+          <td>{{ order.order_number }}</td>
+        <td>{{ order.order_number.market }}</td>
+        <td>{{ order.order_number.actually_finished|date:"d.m.Y" }}</td>
+      <td>{{ order.price }}</td>
+      <td>{{ order.sale_commission }}</td>
+      <td>{{ order.processing_and_delivery }}</td>
+      </tr>
+    {% endfor %}
+{% endif %}
+      </tbody>
+</table>
+{% endblock %}
